@@ -1,0 +1,16 @@
+    \begin{table}[htbp]
+        \caption{\VAR{title}}
+        \begin{center}
+            \begin{tabular}{|\VAR{column_str}|}
+                \hline
+                \multicolumn{\VAR{headers|length}}{|c|}{\textbf{TableThing}} \\
+                \cline{1-\VAR{headers|length}}
+                \VAR{header_str} \\
+                \hline
+\BLOCK{for data_str in data_strs}
+                \VAR{data_str}
+\BLOCK{endfor}
+            \end{tabular}
+            \label{tab2}
+        \end{center}
+    \end{table}
