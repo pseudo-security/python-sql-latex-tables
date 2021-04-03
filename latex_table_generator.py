@@ -5,7 +5,7 @@ from jinja2 import Environment, FileSystemLoader
 from tabulate import tabulate
 
 
-def build_table_jinja2(title, data, headers):
+def build_table_jinja2(title, data, headers, footnote=None):
     env = Environment(
         loader=FileSystemLoader(os.path.join("templates")),
         block_start_string=r"\BLOCK{",
@@ -45,20 +45,23 @@ def build_table_jinja2(title, data, headers):
         column_str="|".join(column_format),
         headers=headers,
         header_str=header_str,
+        footnote=footnote,
     )
 
 
-def build_sql_latex_table(title, curs: Cursor):
+def build_sql_latex_table(title, curs: Cursor, footnote=None):
     return build_table_jinja2(
         title=title,
         data=[row for row in curs],
         headers=[c[0].title().replace("_", " ") for c in curs.description],
+        footnote=footnote,
     )
 
 
 if __name__ == "__main__":
     conn = sqlite3.connect("database.sqlite3")
     latex_table = build_sql_latex_table(
-        "Generic Table Title Goes Here", conn.execute("SELECT * FROM table_name")
+        "Generic Table Title Goes Here", conn.execute("SELECT * FROM table_name"),
+        footnote="Sample footnote!",
     )
     print(latex_table)

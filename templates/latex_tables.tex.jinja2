@@ -3,13 +3,17 @@
         \begin{center}
             \begin{tabular}{|\VAR{column_str}|}
                 \hline
-                \multicolumn{\VAR{headers|length}}{|c|}{\textbf{TableThing}} \\
+                \multicolumn{\VAR{headers|length}}{|c|}{\textbf{Table}} \\
                 \cline{1-\VAR{headers|length}}
                 \VAR{header_str} \\
                 \hline
 \BLOCK{for data_str in data_strs}
                 \VAR{data_str}
 \BLOCK{endfor}
+            \hline
+\BLOCK{if footnote is not none}
+            \multicolumn{\VAR{headers|length}}{l}{$^{\mathrm{a}}$\VAR{footnote}}
+\BLOCK{endif}
             \end{tabular}
             \label{tab2}
         \end{center}
